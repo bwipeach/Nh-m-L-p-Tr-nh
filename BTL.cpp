@@ -20,12 +20,15 @@ void timkiemten(ThucUong *thucuong, int sothucuong);
 void timkiemma(ThucUong *thucuong, int sothucuong);
 void timkiemsoluong(ThucUong *thucuong, int sothucuong);
 void menu(ThucUong *thucuong, int sothucuong);
+void filenhiphan(FILE *file, char *diachi, ThucUong *thucuong, int sothucuong);
 int main(){
     ThucUong *thucuong;
     int sothucuong;
     thucuong=(ThucUong*)malloc(sizeof(ThucUong));
     nhapthucuong(thucuong,sothucuong);
     menu(thucuong,sothucuong);
+    FILE *file;
+    char *diachi = "./src/BaiTapTruong/LuyenCode";
     return 0;
 }
 void nhap(ThucUong *thucuong){
@@ -199,4 +202,15 @@ void menu(ThucUong *thucuong, int sothucuong){
         k=getch();
         c=k;
     }while(c!=27);
+}
+void filenhiphan(FILE *file, char *diachi, ThucUong *thucuong, int sothucuong){
+    char *tinhnang = "ab";
+    file = fopen(diachi,tinhnang);
+    fprintf(file,"thong tin thuc uong cuoi cung la:");
+    for(int i=0;i < sothucuong;i++){
+        printf("ten:%s ma:%s",thucuong->ten, thucuong->ma);
+        printf("sotien:%.2f",thucuong->sotien);
+        fprintf("-------------------------------------------------------------------------------------------------------");
+    }
+    fclose(file);
 }
