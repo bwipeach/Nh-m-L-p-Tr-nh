@@ -7,7 +7,7 @@ struct ThucUong{
 };
 void nhap(ThucUong *thucuong);
 void xuat(ThucUong *thucuong);
-void nhapthucuong(ThucUong *&thucuong, int &n);
+void nhapthucuong(ThucUong *thucuong, int &n);
 void xuatthucuong(ThucUong *thucuong, int n);
 int tinhTong(ThucUong *thucuong, int sothucuong );
 void sapxepten(ThucUong *thucuong, int sothucuong);
@@ -36,21 +36,22 @@ void nhap(ThucUong *thucuong){
     printf("ten thuc uong:");
     gets(thucuong->ten);
     printf("ma thuc uong:");
-    gets(thucuong->loai);
+    gets(thucuong->ma);
     printf("so tien:");
     scanf("%f",&thucuong->sotien);
 }
 void xuat(ThucUong *thucuong){
-    printf("\nten:%s \nloai:%s",thucuong->ten, thucuong->ma);
-    printf("sotien:%.3f", thucuong->sotien);
+    printf("\n===========================================================================\n");
+    printf("\nten: %-20s|| Ma Thuc Uong: %-6s|| So Tien: %-10f|| So Luong: %-4d",thucuong->ten,thucuong->ma,thucuong->sotien,thucuong->soluong);
 }
-void nhapthucuong(ThucUong *&thucuong, int &sothucuong){
+void nhapthucuong(ThucUong *thucuong, int &sothucuong){
     fflush(stdin);
     printf("so luong thuc uong can nhap:");
     scanf("%d",&sothucuong);
     thucuong=(ThucUong*)malloc(sizeof(ThucUong));
     for(int i=0; i < sothucuong;i++){
         nhap(&*(thucuong+i));
+        printf("_____________________\n");
     }
 }
 void xuatthucuong(ThucUong *thucuong, int sothucuong){
@@ -165,6 +166,7 @@ void menu(ThucUong *thucuong, int sothucuong){
         printf("7.Sap xep thuc uong theo so luong\n");
         printf("8.Tim kiem thuc uong theo ten\n");
         printf("9.Tim kiem thuc uong theo ma\n");
+        printf("10.Xuat ra file nhi phan\n");
         printf("Nhap lua chon cua ban:");
         scanf("%d",&chon);
         switch(chon){
@@ -195,10 +197,13 @@ void menu(ThucUong *thucuong, int sothucuong){
             case 9:
                 timkiemma(thucuong,sothucuong);
                 break;
+            case 10:
+                filenhiphan(thucuong,sothucuong);
+                break;
             default:
                 printf("Khong hop le ! Vui long nhap lai:");
         }
-        printf("ban co muon thoat ? (esc)");
+        printf("\nban co muon thoat ? (esc)");
         k=getch();
         c=k;
     }while(c!=27);
@@ -208,9 +213,8 @@ void filenhiphan(FILE *file, char *diachi, ThucUong *thucuong, int sothucuong){
     file = fopen(diachi,tinhnang);
     fprintf(file,"thong tin thuc uong cuoi cung la:");
     for(int i=0;i < sothucuong;i++){
-        printf("ten:%s ma:%s",thucuong->ten, thucuong->ma);
-        printf("sotien:%.2f",thucuong->sotien);
-        fprintf("-------------------------------------------------------------------------------------------------------");
+       fprintf(file,"\nten: %-20s|| Ma Thuc Uong: %-6s|| So Tien: %-10f|| So Luong: %-4d",thucuong->ten,thucuong->ma,thucuong->sotien,thucuong->soluong");
+        fprintf(file,"-------------------------------------------------------------------------------------------------------");
     }
     fclose(file);
 }
