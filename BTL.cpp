@@ -30,8 +30,7 @@ int main(){
     int sothucuong;
     thucuong=(ThucUong*)malloc(sizeof(ThucUong));
     nhapthucuong(thucuong,sothucuong);
-    xuatthucuong(thucuong,sothucuong);
-    tinhTong(thucuong,sothucuong);
+    menu(file,diachi,thucuong,sothucuong);
     if(thucuong!=NULL);
     free(thucuong);
     return 0;
