@@ -10,7 +10,7 @@ struct ThucUong{
 };
 void nhap(ThucUong *thucuong);
 void xuat(ThucUong *thucuong);
-void nhapthucuong(ThucUong *thucuong, int &sothucuong);
+void nhapthucuong(ThucUong *&thucuong, int &sothucuong);
 void xuatthucuong(ThucUong *thucuong, int sothucuong);
 int tinhTong(ThucUong *thucuong, int sothucuong );
 void sapxepten(ThucUong *thucuong, int sothucuong);
@@ -50,7 +50,7 @@ void xuat(ThucUong *thucuong){
     printf("\n=======================================================\n");
     printf("\nten: %-10s|| Ma Thuc Uong: %-5s|| So Tien: %-8f|| So Luong: %-3d",thucuong->ten,thucuong->ma,thucuong->sotien,thucuong->soluong);
 }
-void nhapthucuong(ThucUong *thucuong, int &sothucuong){
+void nhapthucuong(ThucUong *&thucuong, int &sothucuong){
     printf("so luong thuc uong can nhap:");
     scanf("%d",&sothucuong);
     thucuong = (ThucUong*)realloc(thucuong,(sothucuong)*sizeof(ThucUong));
