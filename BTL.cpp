@@ -30,7 +30,8 @@ int main(){
     int sothucuong;
     thucuong=(ThucUong*)malloc(sizeof(ThucUong));
     nhapthucuong(thucuong,sothucuong);
-    menu(file,diachi,thucuong,sothucuong);
+    xuatthucuong(thucuong,sothucuong);
+    tinhTong(thucuong,sothucuong);
     if(thucuong!=NULL);
     free(thucuong);
     return 0;
@@ -48,7 +49,7 @@ void nhap(ThucUong *thucuong){
 }
 void xuat(ThucUong *thucuong){
     printf("\n=======================================================\n");
-    printf("\nten: %-10s|| Ma Thuc Uong: %-5s|| So Tien: %-8f|| So Luong: %-3d",thucuong->ten,thucuong->ma,thucuong->sotien,thucuong->soluong);
+    printf("\nTen: %-10s|| Ma Thuc Uong: %-5s|| So Tien: %-8f|| So Luong: %-3d",thucuong->ten,thucuong->ma,thucuong->sotien,thucuong->soluong);
 }
 void nhapthucuong(ThucUong *&thucuong, int &sothucuong){
     printf("so luong thuc uong can nhap:");
@@ -167,12 +168,9 @@ void menu(FILE *file, char *diachi,ThucUong *thucuong, int sothucuong){
         printf("2.Thong ke thuc uong theo ten (A->Z)\n");
         printf("3.Thong ke thuc uong theo ma\n");
         printf("4.Thong ke thuc uong theo so luong\n");
-        printf("5.Sap xep thuc uong theo ten\n");
-        printf("6.Sap xep thuc uong theo ma\n");
-        printf("7.Sap xep thuc uong theo so luong\n");
-        printf("8.Tim kiem thuc uong theo ten\n");
-        printf("9.Tim kiem thuc uong theo ma\n");
-        printf("10.Xuat ra file nhi phan\n");
+        printf("5.Tim kiem thuc uong theo ten\n");
+        printf("6.Tim kiem thuc uong theo ma\n");
+        printf("7.Xuat ra file nhi phan\n");
         printf("Nhap lua chon cua ban:");
         scanf("%d",&chon);
         switch(chon){
@@ -189,21 +187,12 @@ void menu(FILE *file, char *diachi,ThucUong *thucuong, int sothucuong){
                 thongkesoluong(thucuong,sothucuong);
                 break;
             case 5:
-                sapxepten(thucuong,sothucuong);
-                break;
-            case 6:
-                sapxepma(thucuong,sothucuong);
-                break;
-            case 7:
-                sapxepsoluong(thucuong,sothucuong);
-                break;
-            case 8:
                 timkiemten(thucuong,sothucuong);
                 break;
-            case 9:
+            case 6:
                 timkiemma(thucuong,sothucuong);
                 break;
-            case 10:
+            case 7:
                 filenhiphan(file,diachi,thucuong,sothucuong);
                 break;
             default:
@@ -218,10 +207,10 @@ void menu(FILE *file, char *diachi,ThucUong *thucuong, int sothucuong){
 void filenhiphan(FILE *file, char *diachi, ThucUong *thucuong, int sothucuong){
     char *tinhnang = "ab";
     file = fopen(diachi,tinhnang);
-    fprintf(file,"thong tin thuc uong cuoi cung la:");
+    fprintf(file,"thong tin thuc uong cuoi cung la:\n");
     for(int i=0;i < sothucuong;i++){
-        fprintf(file,"\nten: %-20s|| Ma Thuc Uong: %-6s|| So Tien: %-10f|| So Luong: %-4d",(thucuong+i)->ten,(thucuong+i)->ma,(thucuong+i)->sotien,(thucuong+i)->soluong);
-        fprintf(file,"-------------------------------------------------------------------------------------------------------");
+        fprintf(file,"\nTen: %-20s|| Ma Thuc Uong: %-6s|| So Tien: %-10f|| So Luong: %-4d",(thucuong+i)->ten,(thucuong+i)->ma,(thucuong+i)->sotien,(thucuong+i)->soluong);
+        fprintf(file,"\n-------------------------------------------------------------------------------------------------------\n");
     }
     fclose(file);
 }
