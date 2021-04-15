@@ -220,7 +220,7 @@ void filenhiphan(FILE *file, char *diachi, ThucUong *thucuong, int sothucuong){
     file = fopen(diachi,tinhnang);
     fprintf(file,"thong tin thuc uong cuoi cung la:");
     for(int i=0;i < sothucuong;i++){
-        fprintf(file,"\nten: %-20s|| Ma Thuc Uong: %-6s|| So Tien: %-10f|| So Luong: %-4d",(thucuong+i)->ten,(thucuong+i)->ma,(thucuong+i)->sotien,(thucuong+i)->soluong");
+        fprintf(file,"\nten: %-20s|| Ma Thuc Uong: %-6s|| So Tien: %-10f|| So Luong: %-4d",(thucuong+i)->ten,(thucuong+i)->ma,(thucuong+i)->sotien,(thucuong+i)->soluong);
         fprintf(file,"-------------------------------------------------------------------------------------------------------");
     }
     fclose(file);
